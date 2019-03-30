@@ -9,7 +9,7 @@ def create_app():
     def hello():
         if request.method == 'POST':
             return redirect(url_for('rest'))
-        return render_template('start.html')
+        return render_template('index.html')
 
     @app.route('/rest', methods=('GET', 'POST'))
     def rest():
@@ -17,7 +17,9 @@ def create_app():
         if request.method == 'POST':
             return redirect(url_for('rest'))
         random = choice(rest_lst)
-        return render_template('rest.html', random=random)
+        return render_template('rest.html', token=random)
 
     return app
 
+if __name__ == '__main__':
+    create_app()
